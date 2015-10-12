@@ -4,8 +4,8 @@
 #include <string>
 #include <iostream>
 
-class Person;
-std::istream &read(std::istream &is, Person &p);
+//class Person;
+//std::istream &read(std::istream &is, Person &p);
 
 class Person
 {
@@ -17,22 +17,22 @@ private:
 	std::string address;	
 public:
 	Person() = default;
-	Person(const std::sting &n, const std::string &a):name(n), address(a){ }
-	Person(std::istream *is)
+	Person(const std::string &n, const std::string &a):name(n), address(a){ }
+	Person(std::istream &is)
 	{
 		read(is, *this);
 	}
-	std::string const &get_name() const;
-	std::string const &get_address() const;
+	const std::string &get_name() const;
+	const std::string &get_address() const;
 
 };
 
-std::string Person::get_name() const
+const std::string &Person::get_name() const
 {
 	return name;
 }
 
-std::string Person::get_address() const
+const std::string &Person::get_address() const
 {
 	return address;
 }
