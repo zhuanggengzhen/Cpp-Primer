@@ -10,13 +10,22 @@ using std::endl;
 
 int main()
 {
-	multimap<string, int> m{{"one", 1}, {"two", 2}, {"three", 3}};
+	multimap<string, string> m{{"mark", "one"}, {"mark", "two"}, {"mark", "three"}};
 	for(auto &p : m)
 	{
 		cout << p.first << " " << p.second << endl;
 	}
 	cout << endl;
-	m.erase(m.find("two"));
+	//erase "two"
+	auto count = m.count("mark");
+	auto iter = m.find("mark");
+	while(count)
+	{
+		if(iter->second == "two")
+			m.erase(iter);
+		iter++;
+		count--;
+	}
 	for(auto &p : m)
 	{
 		cout << p.first << " " << p.second << endl;
