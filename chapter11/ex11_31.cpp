@@ -10,7 +10,7 @@ using std::endl;
 
 int main()
 {
-	multimap<string, string> m{{"mark", "one"}, {"mark", "two"}, {"mark", "three"}};
+	multimap<string, string> m{{"mark", "one"}, {"mark", "two"}, {"mark", "three"}, {"kobe", "four"}, {"kobe", "five"}};
 	for(auto &p : m)
 	{
 		cout << p.first << " " << p.second << endl;
