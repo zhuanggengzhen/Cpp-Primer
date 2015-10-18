@@ -56,6 +56,7 @@ class StrBlobPtr
 public:
 	StrBlobPtr():curr(0){ };
 	StrBlobPtr(StrBlob &a, std::size_t sz = 0):wptr(a.data), curr(sz){ };
+	bool operator!=(const StrBlobPtr& p) { return p.curr != curr; }
 	std::string &deref() const
 	{
 		auto p = check(0, "deref on empty vector");
