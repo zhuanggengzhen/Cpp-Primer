@@ -14,6 +14,9 @@ class QueryResult
 	friend void print(std::ostream &os, QueryResult qr);
 public:
 	using line_no = std::vector<std::string>::size_type;
+	std::set<line_no>::iterator begin(){return line_num->begin();}
+	std::set<line_no>::iterator end(){return line_num->end();}
+	std::shared_ptr<StrBlob> get_file() const {return std::make_shared<StrBlob>(lines);}
 	QueryResult(std::string s, const StrBlob &l, std::shared_ptr<std::set<line_no>> ln):word(s), lines(l), line_num(ln){ };
 private:
 	std::string word;
