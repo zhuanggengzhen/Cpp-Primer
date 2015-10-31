@@ -10,7 +10,9 @@ class Message
 public:
     explicit Message(const std::string& str = ""):contents(str) {}
     Message(const Message&);
-    Message& operator=(const Message&);
+	Message(Message&&) noexcept;
+    Message &operator=(const Message&);
+	Message &operator=(Message&&) noexcept;
     ~Message();
     void save(Folder&);
     void remove(Folder&);

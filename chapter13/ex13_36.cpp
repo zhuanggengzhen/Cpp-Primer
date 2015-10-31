@@ -1,14 +1,28 @@
 #include "ex13_36.h"
-Message::Message(const Message& msg):contents(msg.contents), folders(msg    .folders)
+Message::Message(const Message& msg) : contents(msg.contents), folders(msg.folders)
 {
     add_to_Folders(msg);
 }
  
+Message::Message(Message &&msg) noexcept : contents(std::move(msg.contents)), folders(std::move(msg.folders))
+{
+	add_to_Folders(msg);
+}
+
 Message& Message::operator=(const Message &rhs)
 {
     remove_from_Folders();
     contents = rhs.contents;
     folders = rhs.folders;
+    add_to_Folders(rhs);
+    return *this;
+}
+
+Message& Message::operator=(Message &&rhs) noexcept
+{
+    remove_from_Folders();
+    contents = std::move(rhs.contents);
+    folders = std::move(rhs.folders);
     add_to_Folders(rhs);
     return *this;
 }
