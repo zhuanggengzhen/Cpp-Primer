@@ -32,7 +32,7 @@ StrVec::StrVec(const StrVec &sv)
 	cap = first_free = new_data.second;
 }
 
-StrVec::StrVec(StrVec &&sv)
+StrVec::StrVec(StrVec &&sv) noexcept
 {
 	elements = sv.elements;
 	first_free = sv.first_free;
@@ -52,7 +52,7 @@ StrVec::~StrVec()
 	free();
 }
 
-StrVec &StrVec::operator=(StrVec &&sv)
+StrVec &StrVec::operator=(StrVec &&sv) noexcept
 {
 	free();
 	elements = sv.elements;

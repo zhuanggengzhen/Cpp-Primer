@@ -6,10 +6,10 @@ class StrVec
 public:
 	StrVec() : elements(nullptr), first_free(nullptr), cap(nullptr){}
 	StrVec(const StrVec&);
-	StrVec(StrVec&&);
+	StrVec(StrVec&&) noexcept;
 	StrVec(std::initializer_list<std::string>);
 	StrVec &operator=(const StrVec&);
-	StrVec &operator=(StrVec&&);
+	StrVec &operator=(StrVec&&) noexcept;
 	~StrVec();
 	void push_back(const std::string&);
 	size_t size() const { return first_free - elements; }
