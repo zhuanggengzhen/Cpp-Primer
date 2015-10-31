@@ -32,6 +32,14 @@ StrVec::StrVec(const StrVec &sv)
 	cap = first_free = new_data.second;
 }
 
+StrVec::StrVec(StrVec &&sv)
+{
+	elements = sv.elements;
+	first_free = sv.first_free;
+	cap = sv.cap;
+	sv.elements = sv.first_free = sv.cap = nullptr;
+}
+
 StrVec::StrVec(std::initializer_list<std::string> il)
 {
 	auto new_data = alloc_n_copy(il.begin(), il.end());	
@@ -42,6 +50,16 @@ StrVec::StrVec(std::initializer_list<std::string> il)
 StrVec::~StrVec()
 {
 	free();
+}
+
+StrVec &StrVec::operator=(StrVec &&sv)
+{
+	free();
+	elements = sv.elements;
+	first_free = sv.first_free;
+	cap = sv.cap;
+	sv.elements = sv.first_free = sv.cap = nullptr;
+	return *this;
 }
 
 StrVec &StrVec::operator=(const StrVec &sv)
@@ -68,7 +86,3 @@ void StrVec::reallocate()
 }
 
 
-int main()
-{
-	return 0;
-}
