@@ -54,11 +54,14 @@ StrVec::~StrVec()
 
 StrVec &StrVec::operator=(StrVec &&sv) noexcept
 {
-	free();
-	elements = sv.elements;
-	first_free = sv.first_free;
-	cap = sv.cap;
-	sv.elements = sv.first_free = sv.cap = nullptr;
+	if(this != &sv)
+	{
+		free();
+		elements = sv.elements;
+		first_free = sv.first_free;
+		cap = sv.cap;
+		sv.elements = sv.first_free = sv.cap = nullptr;
+	}
 	return *this;
 }
 
