@@ -1,4 +1,4 @@
-#include "ex13_39.h"
+#include "ex13_40.h"
 
 std::allocator<std::string> StrVec::alloc;
 void StrVec::push_back(const std::string &s)
@@ -32,7 +32,7 @@ StrVec::StrVec(const StrVec &sv)
 	cap = first_free = new_data.second;
 }
 
-StrVec::StrVec(initializer_list<std::string> il)
+StrVec::StrVec(std::initializer_list<std::string> il)
 {
 	auto new_data = alloc_n_copy(il.begin(), il.end());	
 	elements = new_data.first;
