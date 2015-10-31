@@ -20,6 +20,13 @@ String::String(const String &str)
 	end_ptr = e;
 }
 
+String::String(String &&str) noexcept
+{
+	elements = str.elements;
+	end_ptr = str.end_ptr;
+	str.elements = str.end_ptr = nullptr;
+}
+
 void String::free()
 {
 	if(elements)
@@ -43,7 +50,15 @@ String &String::operator=(const String &str)
 	return *this;
 }
 
-int main()
+String &String::operator=(String &&str) noexcept
 {
-	return 0;
+	if(this != &str)
+	{
+		free();
+		elements = str.elements;
+		end_ptr = str.end_ptr;
+		str.elements = str.end_ptr = nullptr;
+	}
+	return *this;
 }
+
